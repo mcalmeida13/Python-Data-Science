@@ -1,0 +1,42 @@
+# Import pandas library
+import pandas as pd
+
+# Read the online file by the URL provides above, and assign it to variable "df"
+other_path = "https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/DA0101EN/auto.csv"
+df = pd.read_csv(other_path, header=None) ##No headers
+
+# show the first 5 rows using dataframe.head() method
+print("The first 5 rows of the dataframe") 
+df.head(5)
+
+# show the last 10 rows using dataframe.head() method
+print("The last 10 rows of the dataframe") 
+df.tail(10)
+
+# create headers list
+headers = ["symboling","normalized-losses","make","fuel-type","aspiration", "num-of-doors","body-style",
+         "drive-wheels","engine-location","wheel-base", "length","width","height","curb-weight","engine-type",
+         "num-of-cylinders", "engine-size","fuel-system","bore","stroke","compression-ratio","horsepower",
+         "peak-rpm","city-mpg","highway-mpg","price"]
+
+df.columns = headers ## Add the headers
+df.head(10) ##Print first 10 rows of the dataframe with the headers
+
+## Print the columns names
+print(df.columns)
+
+## Save the new dataframe
+df.to_csv("automobile.csv", index=False)
+
+# check the data type of data frame "df" by .dtypes
+print(df.dtypes)
+
+## This method will provide various summary statistics, excluding <code>NaN</code> (Not a Number) values.
+df.describe()
+
+## describe all the columns in "df" 
+df.describe(include = "all")
+
+## Describe the column length and compression-rate
+
+df[['length','compression-ratio'] ].describe()
